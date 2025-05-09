@@ -1,4 +1,4 @@
-resource "azurerm_windows_virtual_machine" "employee_vm" {
+resource "azurerm_linux_virtual_machine" "employee_vm" {
   for_each = { for emp in local.employees_active : emp.formatted_name => emp }
   name                = "${each.key}-vm"
   location            = azurerm_resource_group.main.location
@@ -16,10 +16,10 @@ resource "azurerm_windows_virtual_machine" "employee_vm" {
     name                 = "${each.key}-osdisk"
   }
 
-source_image_reference {
-  publisher = "MicrosoftWindowsServer"
-  offer     = "WindowsServer"
-  sku       = "2022-standard"        
-  version   = "latest"
-}
+  source_image_reference {
+    publisher = "Canonical"  
+    offer     = "0001-com-ubuntu-server-jammy" 
+    sku       = "22_04-lts" 
+    version   = "latest"  
+  }
 }

@@ -105,7 +105,7 @@
     {
       "name": "Harper Powell",
       "department": "Human-Resources",
-      "status": "active",
+      "status": "left",
       "default_password": "Pass@3950"
     },
     {
@@ -117,7 +117,7 @@
     {
       "name": "Evelyn Knight",
       "department": "Finance",
-      "status": "active",
+      "status": "left",
       "default_password": "Pass@6389"
     }
   ]
