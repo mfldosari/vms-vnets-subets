@@ -1,5 +1,5 @@
 resource "azurerm_linux_virtual_machine" "employee_vm" {
-  for_each = { for emp in local.employees_active : emp.formatted_name => emp }
+  for_each            = { for emp in local.employees_active : emp.formatted_name => emp }
   name                = "${each.key}-vm"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
@@ -17,9 +17,9 @@ resource "azurerm_linux_virtual_machine" "employee_vm" {
   }
 
   source_image_reference {
-    publisher = "Canonical"  
-    offer     = "0001-com-ubuntu-server-jammy" 
-    sku       = "22_04-lts" 
-    version   = "latest"  
+    publisher = "Canonical"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts"
+    version   = "latest"
   }
 }
