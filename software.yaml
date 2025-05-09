@@ -1,0 +1,40 @@
+- name: Install Slack, WhatsApp, OneDrive, and Desktop Environment on Ubuntu VMs
+  hosts: ubuntu_vms
+  become: yes
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install Slack via snap
+      snap:
+        name: slack
+        state: present
+        classic: yes
+
+    - name: Install WhatsApp (via WhatsApp Desktop client)
+      snap:
+        name: whatsapp-desktop-client
+        state: present
+
+    - name: Install OneDrive client
+      apt:
+        name: onedrive
+        state: present
+
+    - name: Install ubuntu-desktop, XRDP, and GNOME terminal
+      apt:
+        name:
+          - ubuntu-desktop
+          - xrdp
+          - gnome-terminal
+        state: present
+
+    - name: Set graphical.target as default
+      command: systemctl set-default graphical.target
+
+    - name: Enable and start xrdp service
+      systemd:
+        name: xrdp
+        enabled: yes
+        state: started

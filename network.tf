@@ -6,8 +6,17 @@ resource "azurerm_virtual_network" "vnet_main" {
   resource_group_name = azurerm_resource_group.main.name
 }
 
+# Creates a static public IP address for use with a network interface
+resource "azurerm_public_ip" "ips" {
+   for_each   = { for emp in local.employees_active : emp.formatted_name => emp }
+  name                = "${each.key}-ip" # Use employee's name as part of the NIC name
+  resource_group_name = azurerm_resource_group.main.name
+  location            = azurerm_resource_group.main.location
+  allocation_method   = "Static"
+  
+}
+
 resource "azurerm_subnet" "subnets" {
-  depends_on = [azurerm_virtual_network.main]
 
   for_each = toset(local.departments)
 
@@ -32,6 +41,7 @@ resource "azurerm_network_interface" "employee_nic" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.subnets[each.value.department].id # Assign to correct subnet based on department
     private_ip_address_allocation = "Dynamic"
+        public_ip_address_id          = azurerm_public_ip.ips[each.value.formatted_name].id
   }
 }
 
@@ -45,12 +55,23 @@ resource "azurerm_network_security_group" "nsg" {
 
   security_rule {
     name                       = "AllowSSH"
-    priority                   = 1001
+    priority                   = 100
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "22"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+    security_rule {
+    name                       = "AllowRDT"
+    priority                   = 200
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "3389"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }

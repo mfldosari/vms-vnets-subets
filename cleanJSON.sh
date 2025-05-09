@@ -9,8 +9,7 @@ jq 'map({
   name,
   department: (.department | ascii_downcase | gsub(" "; "-")),
   status,
-  default_password,
-  os
+  default_password
 })' "$INPUT_FILE" > "$OUTPUT_FILE"
 
 echo "Cleaned employee data saved to $OUTPUT_FILE"

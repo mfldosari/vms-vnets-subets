@@ -2,38 +2,38 @@
     {
       "name": "Liam Foster",
       "department": "Engineering",
-      "status": "active",
-      "default_password": "Pass@7432"
+      "status": "left",
+      "default_password": "Pass@5602"
       
     },
     {
       "name": "Emma Dawson",
       "department": "Marketing",
       "status": "left",
-      "default_password": "Pass@3819"
+      "default_password": "Pass@5602"
     },
     {
       "name": "Noah Bennett",
       "department": "Finance",
-      "status": "active",
-      "default_password": "Pass@0291"
+      "status": "left",
+      "default_password": "Pass@5602"
     },
     {
       "name": "Olivia Clarke",
       "department": "Human-Resources",
       "status": "left",
-      "default_password": "Pass@6220"
+      "default_password": "Pass@5602"
     },
     {
       "name": "Elijah Grant",
       "department": "Sales",
-      "status": "active",
-      "default_password": "Pass@1843"
+      "status": "left",
+      "default_password": "Pass@5602"
     },
     {
       "name": "Ava Morgan",
       "department": "Engineering",
-      "status": "active",
+      "status": "left",
       "default_password": "Pass@5602"
     },
     {
@@ -46,12 +46,12 @@
       "name": "Sophia James",
       "department": "Customer-Service",
       "status": "active",
-      "default_password": "Pass@3187"
+      "default_password": "Pass@5602"
     },
     {
       "name": "James Carter",
       "department": "Logistics",
-      "status": "active",
+      "status": "left",
       "default_password": "Pass@9093"
     },
     {
@@ -64,13 +64,13 @@
       "name": "Benjamin Hughes",
       "department": "IT",
       "status": "active",
-      "default_password": "Pass@2634"
+      "default_password": "Pass@5602"
     },
     {
       "name": "Mia Peterson",
       "department": "Engineering",
-      "status": "active",
-      "default_password": "Pass@7539"
+      "status": "left",
+      "default_password": "Pass@5602"
     },
     {
       "name": "Lucas Shaw",
@@ -81,13 +81,13 @@
     {
       "name": "Amelia Hayes",
       "department": "Sales",
-      "status": "active",
+      "status": "left",
       "default_password": "Pass@8095"
     },
     {
       "name": "Henry Kelly",
       "department": "Logistics",
-      "status": "active",
+      "status": "left",
       "default_password": "Pass@2274"
     },
     {
@@ -99,8 +99,8 @@
     {
       "name": "Alexander Fisher",
       "department": "Customer-Service",
-      "status": "active",
-      "default_password": "Pass@4428"
+      "status": "left",
+      "default_password": "Pass@5602"
     },
     {
       "name": "Harper Powell",

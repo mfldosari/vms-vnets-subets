@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Liam Foster",
+    "department": "engineering",
+    "status": "left",
+    "default_password": "Pass@5602"
+  },
+  {
+    "name": "Emma Dawson",
+    "department": "marketing",
+    "status": "left",
+    "default_password": "Pass@5602"
+  },
+  {
+    "name": "Noah Bennett",
+    "department": "finance",
+    "status": "active",
+    "default_password": "Pass@5602"
+  },
+  {
+    "name": "Olivia Clarke",
+    "department": "human-resources",
+    "status": "active",
+    "default_password": "Pass@5602"
+  },
+  {
+    "name": "Elijah Grant",
+    "department": "sales",
+    "status": "active",
+    "default_password": "Pass@5602"
+  },
+  {
+    "name": "Ava Morgan",
+    "department": "engineering",
+    "status": "active",
+    "default_password": "Pass@5602"
+  },
+  {
+    "name": "William Ross",
+    "department": "it",
+    "status": "left",
+    "default_password": "Pass@7340"
+  },
+  {
+    "name": "Sophia James",
+    "department": "customer-service",
+    "status": "left",
+    "default_password": "Pass@5602"
+  },
+  {
+    "name": "James Carter",
+    "department": "logistics",
+    "status": "left",
+    "default_password": "Pass@9093"
+  },
+  {
+    "name": "Isabella Adams",
+    "department": "finance",
+    "status": "left",
+    "default_password": "Pass@4712"
+  },
+  {
+    "name": "Benjamin Hughes",
+    "department": "it",
+    "status": "left",
+    "default_password": "Pass@5602"
+  },
+  {
+    "name": "Mia Peterson",
+    "department": "engineering",
+    "status": "left",
+    "default_password": "Pass@5602"
+  },
+  {
+    "name": "Lucas Shaw",
+    "department": "operations",
+    "status": "left",
+    "default_password": "Pass@1547"
+  },
+  {
+    "name": "Amelia Hayes",
+    "department": "sales",
+    "status": "left",
+    "default_password": "Pass@8095"
+  },
+  {
+    "name": "Henry Kelly",
+    "department": "logistics",
+    "status": "left",
+    "default_password": "Pass@2274"
+  },
+  {
+    "name": "Charlotte Brooks",
+    "department": "marketing",
+    "status": "left",
+    "default_password": "Pass@6781"
+  },
+  {
+    "name": "Alexander Fisher",
+    "department": "customer-service",
+    "status": "active",
+    "default_password": "Pass@5602"
+  },
+  {
+    "name": "Harper Powell",
+    "department": "human-resources",
+    "status": "left",
+    "default_password": "Pass@3950"
+  },
+  {
+    "name": "Daniel Simmons",
+    "department": "operations",
+    "status": "left",
+    "default_password": "Pass@1005"
+  },
+  {
+    "name": "Evelyn Knight",
+    "department": "finance",
+    "status": "left",
+    "default_password": "Pass@6389"
+  }
+]

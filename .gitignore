@@ -1,0 +1,7 @@
+terraform.tfstate
+terraform.tfstate.backup
+note.txt
+.terraform.lock.hcl
+.terraform.tfstate.lock.info
+.terraform/
+inventory.ini
