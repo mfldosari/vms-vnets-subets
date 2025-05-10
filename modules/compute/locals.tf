@@ -1,6 +1,6 @@
 locals {
   # Decode the JSON file into a list of employees
-  employees_all       = jsondecode(file("${path.module}/Data/employees_cleaned.json"))
+  employees_all       = jsondecode(file("Data/employees_cleaned.json"))
   employees_active_tf = { for emp in local.employees_all : emp.name => emp if emp.status == "active" }
 
   # Filter active employees and add formatted name
@@ -16,10 +16,4 @@ locals {
     }
     if emp.status == "active"
   ]
-
-  # Extract a distinct list of departments from the employees data
-  departments = distinct([for emp in local.employees_all : emp.department])
-
-  # Convert the set of departments to a list to use with indexing
-  departments_list = tolist(local.departments)
 }

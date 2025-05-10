@@ -1,19 +1,18 @@
 resource "azurerm_virtual_network" "vnet_main" {
-  depends_on          = [azurerm_resource_group.main]
   name                = "companyA-vnet"
   address_space       = ["10.0.0.0/16"]
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
+  location            = var.rg_location
+  resource_group_name = var.rg_name
 }
 
 # Creates a static public IP address for use with a network interface
 resource "azurerm_public_ip" "ips" {
-   for_each   = { for emp in local.employees_active : emp.formatted_name => emp }
+  for_each            = { for emp in local.employees_active : emp.formatted_name => emp }
   name                = "${each.key}-ip" # Use employee's name as part of the NIC name
-  resource_group_name = azurerm_resource_group.main.name
-  location            = azurerm_resource_group.main.location
+  resource_group_name = var.rg_name
+  location            = var.rg_location
   allocation_method   = "Static"
-  
+
 }
 
 resource "azurerm_subnet" "subnets" {
@@ -21,7 +20,7 @@ resource "azurerm_subnet" "subnets" {
   for_each = toset(local.departments)
 
   name                 = "${each.key}-subnet"
-  resource_group_name  = azurerm_resource_group.main.name
+  resource_group_name  = var.rg_name
   virtual_network_name = azurerm_virtual_network.vnet_main.name
 
   # Assign a unique address prefix for each department based on index
@@ -34,14 +33,14 @@ resource "azurerm_network_interface" "employee_nic" {
   for_each   = { for emp in local.employees_active : emp.formatted_name => emp }
 
   name                = "${each.key}-nic" # Use employee's name as part of the NIC name
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
+  location            = var.rg_location
+  resource_group_name = var.rg_name
 
   ip_configuration {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.subnets[each.value.department].id # Assign to correct subnet based on department
     private_ip_address_allocation = "Dynamic"
-        public_ip_address_id          = azurerm_public_ip.ips[each.value.formatted_name].id
+    public_ip_address_id          = azurerm_public_ip.ips[each.value.formatted_name].id
   }
 }
 
@@ -50,8 +49,8 @@ resource "azurerm_network_interface" "employee_nic" {
 
 resource "azurerm_network_security_group" "nsg" {
   name                = "vm-nsg"
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
+  location            = var.rg_location
+  resource_group_name = var.rg_name
 
   security_rule {
     name                       = "AllowSSH"
@@ -64,7 +63,7 @@ resource "azurerm_network_security_group" "nsg" {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
-    security_rule {
+  security_rule {
     name                       = "AllowRDT"
     priority                   = 200
     direction                  = "Inbound"

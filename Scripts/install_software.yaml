@@ -44,4 +44,4 @@
         name: rdpuser
         shell: /bin/bash
         groups: sudo
-        password: "{{ '<pass>' | password_hash('sha512') }}"
+        password: "{{ '12345' | password_hash('sha512') }}"

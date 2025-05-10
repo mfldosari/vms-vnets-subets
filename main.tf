@@ -1,44 +1,30 @@
 provider "azurerm" {
   features {}
-  subscription_id = "...."
+  subscription_id = var.subscription_id
 
 }
 
-resource "azurerm_resource_group" "main" {
-  name       = "companyA-rg"
-  location   = "East US"
+
+module "resource_group" {
+  source = "./modules/general/resource_group"
+  rg = var.rg
 }
 
-resource "null_resource" "run" {
-  depends_on = [ azurerm_linux_virtual_machine.employee_vm ]
-  triggers = {
-    always_run = "${timestamp()}"
-  }
-  provisioner "local-exec" {
-    command = "bash ./shapeive.sh"
-  }
+module "compute" {
+  source = "./modules/compute"
+  network_interface_ids = module.network.employee_nic_ids  
+  rg_location = module.resource_group.rg_location
+  rg_name = module.resource_group.rg_name
 }
 
-# resource "null_resource" "runS" {
-#   depends_on = [ 
-#     azurerm_linux_virtual_machine.employee_vm,
-#     null_resource.run
-#      ]
-#   triggers = {
-#     always_run = "${timestamp()}"
-#   }
-#   provisioner "local-exec" {
-#     command = "bash ./anisble.sh"
-#   }
-# }
 
-# resource "null_resource" "runO" {
-#     depends_on = [ azurerm_public_ip.ips ]
-#   triggers = {
-#     always_run = "${timestamp()}"
-#   }
-# provisioner "local-exec" {
-#   command     = "terraform output -json > tf_output.json"
-#   interpreter = ["bash", "-c"]  # Explicitly specify shell
-# }
-# }
+
+
+module "network" {
+  depends_on          = [module.resource_group]
+  source = "./modules/network"
+  rg_location = module.resource_group.rg_location
+  rg_name = module.resource_group.rg_name
+}
+
+
